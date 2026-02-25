@@ -17,10 +17,10 @@ public class Problema {
      * Atributos de la tabla Problema
      */
     private int idProblema;
+    private String descripcion;
     private Date fchIni;
     private Date fchFin;
     private String estado;// pendiente, concluido, cancelado
-    private String descripcion;
     private int idCliente;   // FK hacia Cliente
 
     /**
@@ -43,11 +43,11 @@ public class Problema {
      */
     public Problema(int idProblema, String descripcion, Date fchIni, Date fchFin, String estado, int idCliente) {
         this.idProblema = idProblema;
+        this.descripcion = descripcion;
         this.fchIni = fchIni;
         this.fchFin = fchFin;
         this.estado = estado;
         this.idCliente = idCliente;
-        this.descripcion = descripcion;
     }
 
     /**

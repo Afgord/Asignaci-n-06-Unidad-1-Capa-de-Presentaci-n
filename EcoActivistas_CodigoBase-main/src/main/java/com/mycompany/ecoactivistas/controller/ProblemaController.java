@@ -26,7 +26,7 @@ public class ProblemaController {
     }
 
     // Insertar un nuevo problema con validaciones
-    public boolean agregarProblema(Date fchIni, Date fchFin, String estado, int idCliente, String descripcion) {
+    public boolean agregarProblema(String descripcion, Date fchIni, Date fchFin, String estado, int idCliente) {
         if (fchIni == null) {
             System.err.println("La fecha de inicio es obligatoria.");
             return false;
@@ -41,11 +41,12 @@ public class ProblemaController {
         }
 
         Problema problema = new Problema();
+        problema.setDescripcion(descripcion);
         problema.setFchIni(fchIni);
         problema.setFchFin(fchFin);
         problema.setEstado(estado.toLowerCase());
         problema.setIdCliente(idCliente);
-        problema.setDescripcion(descripcion);
+        
 
         return problemaDAO.insertar(problema);
     }

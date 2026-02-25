@@ -208,6 +208,7 @@ public class FrmProblemas extends javax.swing.JPanel {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
+        limpiarCampos();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
@@ -248,10 +249,10 @@ public class FrmProblemas extends javax.swing.JPanel {
         try {
 
             String descripcion = txtDesc.getText().trim();
-            String estado = cmbEstado.getSelectedItem().toString().trim();
             Date fechaInicio = (Date) txtFchInicio.getDate();
             Date fechaFin = (Date) txtFchFin.getDate();
-
+            String estado = cmbEstado.getSelectedItem().toString().trim();
+            
             if (descripcion.isEmpty() || fechaFin == null || fechaInicio == null || this.cliente == null) {
                 JOptionPane.showMessageDialog(
                         this,
@@ -269,11 +270,11 @@ public class FrmProblemas extends javax.swing.JPanel {
 
                 // Ahora regresa boolean
                 boolean exito = pController.agregarProblema(
+                        descripcion,
                         sqlDateInicio,
                         sqlDateFin,
                         estado,
-                        this.cliente.getIdCliente(),
-                        descripcion
+                        this.cliente.getIdCliente()
                 );
 
                 if (exito) {
@@ -296,6 +297,14 @@ public class FrmProblemas extends javax.swing.JPanel {
                     JOptionPane.ERROR_MESSAGE
             );
         }
+    }
+    
+    private void limpiarCampos() {
+        txtID.setText("0");
+        txtDesc.setText("");
+        txtFchInicio.setDate(null);
+        txtFchFin.setDate(null);
+        txtCliente.setText("");
     }
 
 }

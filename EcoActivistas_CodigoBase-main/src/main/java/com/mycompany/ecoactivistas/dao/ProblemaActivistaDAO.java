@@ -22,14 +22,14 @@ public class ProblemaActivistaDAO implements IProblemaActivistaDAO {
 
     @Override
     public boolean insertar(ProblemaActivista relacion) {
-        String sql = "INSERT INTO Problema_Activista (idProblema, idActivista) VALUES (?, ?)";
+        String sql = "INSERT INTO problema_activista (idProblema, idActivista) VALUES (?, ?)";
         try (Connection conn = ConexionDB.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
-
+            
             ps.setInt(1, relacion.getIdProblema());
             ps.setInt(2, relacion.getIdActivista());
 
-            return ps.executeUpdate() > 0;
-
+            return ps.executeUpdate() > 0;    // linea original
+            
         } catch (SQLException e) {
             System.err.println("Error al insertar relación Problema-Activista: " + e.getMessage());
             return false;
@@ -38,7 +38,7 @@ public class ProblemaActivistaDAO implements IProblemaActivistaDAO {
 
     @Override
     public List<ProblemaActivista> obtenerPorProblema(int idProblema) {
-        String sql = "SELECT idProblema, idActivista FROM Problema_Activista WHERE idProblema = ?";
+        String sql = "SELECT idProblema, idActivista FROM problema_activista WHERE idProblema = ?";
         List<ProblemaActivista> lista = new ArrayList<>();
 
         try (Connection conn = ConexionDB.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -61,7 +61,7 @@ public class ProblemaActivistaDAO implements IProblemaActivistaDAO {
 
     @Override
     public List<ProblemaActivista> obtenerPorActivista(int idActivista) {
-        String sql = "SELECT idProblema, idActivista FROM Problema_Activista WHERE idActivista = ?";
+        String sql = "SELECT idProblema, idActivista FROM problema_activista WHERE idActivista = ?";
         List<ProblemaActivista> lista = new ArrayList<>();
 
         try (Connection conn = ConexionDB.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -84,7 +84,7 @@ public class ProblemaActivistaDAO implements IProblemaActivistaDAO {
 
     @Override
     public boolean eliminar(int idProblema, int idActivista) {
-        String sql = "DELETE FROM Problema_Activista WHERE idProblema = ? AND idActivista = ?";
+        String sql = "DELETE FROM problema_activista WHERE idProblema = ? AND idActivista = ?";
         try (Connection conn = ConexionDB.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, idProblema);

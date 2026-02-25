@@ -40,7 +40,7 @@ public class ProblemaDAO implements IProblemaDAO {
 
     @Override
     public Problema obtenerPorId(int idProblema) {
-        String sql = "SELECT  idProblema, descripcion, fch_Ini, fch_fin, estado, idCliente FROM Problema WHERE idProblema = ? LIMIT 100";
+        String sql = "SELECT  idProblema, descripcion, fch_Ini, fch_fin, estado, idCliente FROM Problema WHERE idProblema = ?";
         Problema problema = null;
 
         try (Connection conn = ConexionDB.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -66,7 +66,7 @@ public class ProblemaDAO implements IProblemaDAO {
 
     @Override
     public List<Problema> obtenerTodos() {
-        String sql = "SELECT idProblema, descripcion, fch_ini, fch_fin, estado, idCliente FROM Problema LIMIT 100";
+        String sql = "SELECT idProblema, descripcion, fch_ini, fch_fin, estado, idCliente FROM Problema";
         List<Problema> lista = new ArrayList<>();
 
         try (Connection conn = ConexionDB.getConnection(); PreparedStatement ps = conn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
@@ -90,7 +90,7 @@ public class ProblemaDAO implements IProblemaDAO {
 
     @Override
     public List<Problema> obtenerTodosPorFiltro(String filtro) {
-        String sql = "SELECT idProblema, descripcion, fch_ini, fch_fin, estado, idCliente FROM Problema WHERE descripcion LIKE ? LIMIT 100";
+        String sql = "SELECT idProblema, descripcion, fch_ini, fch_fin, estado, idCliente FROM Problema WHERE descripcion LIKE ?";
         List<Problema> lista = new ArrayList<>();
 
         try (Connection conn = ConexionDB.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
